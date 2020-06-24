@@ -21,7 +21,7 @@ func UpTo(db *sql.DB, dir string, version int64) error {
 
 		next, err := migrations.Next(current)
 		if next != nil {
-			log.Printf("TEST-DEBUG migrations.Next: %v\n", next.String())
+			log.Printf("TEST-DEBUG  migrations.Next: %v\n", next.String())
 		}
 		if err != nil {
 			if err == ErrNoNextVersion {
