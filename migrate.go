@@ -49,12 +49,13 @@ func (ms Migrations) Current(current int64) (*Migration, error) {
 
 // Next gets the next migration.
 func (ms Migrations) Next(current int64) (*Migration, error) {
+	log.Println("TEST-DEBUG Next: beginning")
 	for i, migration := range ms {
-		log.Printf("TEST-DEBUG Next: i=%v, migration.Source=%v, migration.Version=%v\n", i, migration.Source, migration.Version)
 		if migration.Version > current {
 			log.Println("TEST-DEBUG Next: migration.Version > current: YES!")
 			return ms[i], nil
 		}
+		log.Printf("TEST-DEBUG Next: i=%v, migration.Source=%v, migration.Version=%v\n", i, migration.Source, migration.Version)
 	}
 
 	return nil, ErrNoNextVersion
