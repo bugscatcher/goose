@@ -20,7 +20,9 @@ func UpTo(db *sql.DB, dir string, version int64) error {
 		}
 
 		next, err := migrations.Next(current)
-		log.Printf("TEST-DEBUG migrations.Next: %v\n", next.String())
+		if next != nil {
+			log.Printf("TEST-DEBUG migrations.Next: %v\n", next.String())
+		}
 		if err != nil {
 			if err == ErrNoNextVersion {
 				log.Printf("goose: no migrations to run. current version: %d\n", current)
